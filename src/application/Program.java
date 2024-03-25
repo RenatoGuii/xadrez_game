@@ -1,13 +1,11 @@
 package application;
 
-import tabuleiro.posicao;
+import tabuleiro.MesaTabuleiro;
 
 public class Program {
     public static void main(String[] args) throws Exception {
-        
-        posicao position = new posicao(2, 5);
 
-        System.out.println(position);
+        MesaTabuleiro mesa = new MesaTabuleiro(8, 8);
 
     }
 }
