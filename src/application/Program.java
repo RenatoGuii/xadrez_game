@@ -1,11 +1,12 @@
 package application;
 
-import tabuleiro.MesaTabuleiro;
+import xadrez.PartidaXadrez;
 
 public class Program {
     public static void main(String[] args) throws Exception {
 
-        MesaTabuleiro mesa = new MesaTabuleiro(8, 8);
+        PartidaXadrez partidaXadrez = new PartidaXadrez();
+        UI.printBoard(partidaXadrez.getPecas());
 
     }
 }
