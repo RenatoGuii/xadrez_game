@@ -30,7 +30,7 @@ public class PartidaXadrez {
 
     private void initialSetup() {
         mesaTabuleiro.posicionarPeca(new Torre(mesaTabuleiro, Color.WHITE), new Posicao(2, 1));
-        mesaTabuleiro.posicionarPeca(new Rei(mesaTabuleiro, Color.BLACK), new Posicao(0, 2));
+        mesaTabuleiro.posicionarPeca(new Rei(mesaTabuleiro, Color.BLACK), new Posicao(2, 3));
         mesaTabuleiro.posicionarPeca(new Torre(mesaTabuleiro, Color.WHITE), new Posicao(2, 4));
     }
 
