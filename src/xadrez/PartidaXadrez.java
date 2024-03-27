@@ -1,6 +1,8 @@
 package xadrez;
 
 import tabuleiro.MesaTabuleiro;
+import tabuleiro.Peca;
+import tabuleiro.Posicao;
 import xadrezPecas.Rei;
 import xadrezPecas.Torre;
 
@@ -27,13 +29,33 @@ public class PartidaXadrez {
 
     }
 
+    public PecaXadrez MovimentoXadrez(PosicaoXadrez posicaoOrigem, PosicaoXadrez posicaoDestino) {
+        Posicao origem = posicaoOrigem.posicionarXadrezMatriz();
+        Posicao destino = posicaoDestino.posicionarXadrezMatriz();
+        validarPosicaoOrigem(origem);
+        Peca pecaCapturada = executarMovimento(origem, destino);
+        return (PecaXadrez) pecaCapturada;
+    }
+
+    private Peca executarMovimento(Posicao origem, Posicao destino) {
+        Peca p = mesaTabuleiro.removerPeca(origem);
+        Peca pecaCapturada = mesaTabuleiro.removerPeca(destino);
+        mesaTabuleiro.posicionarPeca(p, destino);
+        return pecaCapturada;
+    }
+
+    private void validarPosicaoOrigem(Posicao posicao) {
+        if (!mesaTabuleiro.haUmaPeca(posicao)) {
+            throw new XadrezException("Nao existe peca nessa posicao!");
+        }
+    }
+
     private void coloqueNovaPeca(char coluna, int linha, PecaXadrez pecaXadrez) {
         mesaTabuleiro.posicionarPeca(pecaXadrez, new PosicaoXadrez(coluna, linha).posicionarXadrezMatriz());
     }
 
     private void initialSetup() {
-        coloqueNovaPeca('b', 6, new Torre(mesaTabuleiro, Color.WHITE));
-        coloqueNovaPeca('e', 1, new Rei(mesaTabuleiro, Color.WHITE));
+        coloqueNovaPeca('e', 1, new Torre(mesaTabuleiro, Color.WHITE));
         coloqueNovaPeca('c', 1, new Torre(mesaTabuleiro, Color.WHITE));
         coloqueNovaPeca('c', 2, new Torre(mesaTabuleiro, Color.WHITE));
         coloqueNovaPeca('d', 2, new Torre(mesaTabuleiro, Color.WHITE));
