@@ -1,7 +1,10 @@
 package application;
 
+import java.util.Arrays;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 import xadrez.Color;
 import xadrez.PartidaXadrez;
@@ -48,36 +51,37 @@ public class UI {
         }
     }
 
-    public static void printMatch(PartidaXadrez partidaXadrez) {
-        printBoard(partidaXadrez.getPecas());
+    public static void imprimirPartida(PartidaXadrez partidaXadrez, List<PecaXadrez> capturados) {
+        imprimirMesa(partidaXadrez.getPecas());
         System.out.println();
+        imprimirPecasCapturadas(capturados);
         System.out.println("Turno: " + partidaXadrez.getTurno());
         System.out.println("Esperando jogador: " + partidaXadrez.getJogadorAtual());
     }
 
-    public static void printBoard(PecaXadrez[][] pecas) {
+    public static void imprimirMesa(PecaXadrez[][] pecas) {
         for (int i = 0; i < pecas.length; i++) {
             System.out.print((8 - i) + " ");
             for (int j = 0; j < pecas.length; j++) {
-                printPiece(pecas[i][j], false);
+                imprimirPeca(pecas[i][j], false);
             }
             System.out.println();
         }
         System.out.println("  a b c d e f g h");
     }
 
-    public static void printBoard(PecaXadrez[][] pecas, boolean[][] movimentosPossiveis) {
+    public static void imprimirMesa(PecaXadrez[][] pecas, boolean[][] movimentosPossiveis) {
         for (int i = 0; i < pecas.length; i++) {
             System.out.print((8 - i) + " ");
             for (int j = 0; j < pecas.length; j++) {
-                printPiece(pecas[i][j], movimentosPossiveis[i][j]);
+                imprimirPeca(pecas[i][j], movimentosPossiveis[i][j]);
             }
             System.out.println();
         }
         System.out.println("  a b c d e f g h");
     }
 
-    private static void printPiece(PecaXadrez peca, boolean background) {
+    private static void imprimirPeca(PecaXadrez peca, boolean background) {
         if (background) {
             System.out.print(ANSI_BLUE_BACKGROUND);
         }
@@ -91,6 +95,24 @@ public class UI {
             }
         }
         System.out.print(" ");
+    }
+
+    private static void imprimirPecasCapturadas(List<PecaXadrez> capturados) {
+        List<PecaXadrez> white = capturados.stream().filter(x -> x.getColor() == Color.WHITE)
+                .collect(Collectors.toList());
+        List<PecaXadrez> black = capturados.stream().filter(x -> x.getColor() == Color.BLACK)
+                .collect(Collectors.toList());
+
+        System.out.println("Pecas capturadas: ");
+        System.out.print("White: ");
+        System.out.print(ANSI_WHITE);
+        System.out.println(Arrays.toString(white.toArray()));
+        System.out.print(ANSI_RESET);
+        System.out.print("BLACK: ");
+        System.out.print(ANSI_YELLOW);
+        System.out.println(Arrays.toString(black.toArray()));
+        System.out.print(ANSI_RESET);
+        System.out.println();
     }
 
 }
