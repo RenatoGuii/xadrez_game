@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import tabuleiro.MesaTabuleiro;
 import tabuleiro.Peca;
 import tabuleiro.Posicao;
+import xadrezPecas.Peao;
 import xadrezPecas.Rei;
 import xadrezPecas.Torre;
 
@@ -205,12 +206,29 @@ public class PartidaXadrez {
     }
 
     private void initialSetup() {
-        coloqueNovaPeca('h', 7, new Torre(mesaTabuleiro, Color.WHITE));
-        coloqueNovaPeca('d', 1, new Torre(mesaTabuleiro, Color.WHITE));
+        coloqueNovaPeca('a', 1, new Torre(mesaTabuleiro, Color.WHITE));
         coloqueNovaPeca('e', 1, new Rei(mesaTabuleiro, Color.WHITE));
+        coloqueNovaPeca('h', 1, new Torre(mesaTabuleiro, Color.WHITE));
+        coloqueNovaPeca('a', 2, new Peao(mesaTabuleiro, Color.WHITE));
+        coloqueNovaPeca('b', 2, new Peao(mesaTabuleiro, Color.WHITE));
+        coloqueNovaPeca('c', 2, new Peao(mesaTabuleiro, Color.WHITE));
+        coloqueNovaPeca('d', 2, new Peao(mesaTabuleiro, Color.WHITE));
+        coloqueNovaPeca('e', 2, new Peao(mesaTabuleiro, Color.WHITE));
+        coloqueNovaPeca('f', 2, new Peao(mesaTabuleiro, Color.WHITE));
+        coloqueNovaPeca('g', 2, new Peao(mesaTabuleiro, Color.WHITE));
+        coloqueNovaPeca('h', 2, new Peao(mesaTabuleiro, Color.WHITE));
 
-        coloqueNovaPeca('b', 8, new Torre(mesaTabuleiro, Color.BLACK));
-        coloqueNovaPeca('a', 8, new Rei(mesaTabuleiro, Color.BLACK));
+        coloqueNovaPeca('a', 8, new Torre(mesaTabuleiro, Color.BLACK));
+        coloqueNovaPeca('e', 8, new Rei(mesaTabuleiro, Color.BLACK));
+        coloqueNovaPeca('h', 8, new Torre(mesaTabuleiro, Color.BLACK));
+        coloqueNovaPeca('a', 7, new Peao(mesaTabuleiro, Color.BLACK));
+        coloqueNovaPeca('b', 7, new Peao(mesaTabuleiro, Color.BLACK));
+        coloqueNovaPeca('c', 7, new Peao(mesaTabuleiro, Color.BLACK));
+        coloqueNovaPeca('d', 7, new Peao(mesaTabuleiro, Color.BLACK));
+        coloqueNovaPeca('e', 7, new Peao(mesaTabuleiro, Color.BLACK));
+        coloqueNovaPeca('f', 7, new Peao(mesaTabuleiro, Color.BLACK));
+        coloqueNovaPeca('g', 7, new Peao(mesaTabuleiro, Color.BLACK));
+        coloqueNovaPeca('h', 7, new Peao(mesaTabuleiro, Color.BLACK));
     }
 
 }
