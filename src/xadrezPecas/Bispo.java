@@ -11,6 +11,10 @@ public class Bispo extends PecaXadrez {
         super(mesaTabuleiro, color);
     }
 
+    public String toString() {
+        return "B";
+    }
+
     @Override
     public boolean[][] movimentosPossiveis() {
         boolean[][] mat = new boolean[getMesaTabuleiro().getLinhas()][getMesaTabuleiro().getColunas()];
@@ -68,10 +72,6 @@ public class Bispo extends PecaXadrez {
         }
 
         return mat;
-    }
-
-    public String toString() {
-        return "B";
     }
 
 }
