@@ -2,13 +2,13 @@ package xadrezPecas;
 
 import tabuleiro.MesaTabuleiro;
 import tabuleiro.Posicao;
-import xadrez.Color;
+import xadrez.Cor;
 import xadrez.PecaXadrez;
 
 public class Rei extends PecaXadrez {
 
-    public Rei(MesaTabuleiro mesaTabuleiro, Color color) {
-        super(mesaTabuleiro, color);
+    public Rei(MesaTabuleiro mesaTabuleiro, Cor cor) {
+        super(mesaTabuleiro, cor);
     }
 
     @Override
@@ -18,7 +18,7 @@ public class Rei extends PecaXadrez {
 
     private boolean podeMover(Posicao posicao) {
         PecaXadrez p = (PecaXadrez) getMesaTabuleiro().peca(posicao);
-        return p == null || p.getColor() != getColor();
+        return p == null || p.getCor() != getCor();
     }
 
     @Override

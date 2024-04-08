@@ -2,13 +2,13 @@ package xadrezPecas;
 
 import tabuleiro.MesaTabuleiro;
 import tabuleiro.Posicao;
-import xadrez.Color;
+import xadrez.Cor;
 import xadrez.PecaXadrez;
 
 public class Rainha extends PecaXadrez {
 
-    public Rainha(MesaTabuleiro mesaTabuleiro, Color color) {
-        super(mesaTabuleiro, color);
+    public Rainha(MesaTabuleiro mesaTabuleiro, Cor cor) {
+        super(mesaTabuleiro, cor);
     }
 
     public String toString() {

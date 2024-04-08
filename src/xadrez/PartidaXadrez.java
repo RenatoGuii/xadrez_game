@@ -17,7 +17,7 @@ import xadrezPecas.Torre;
 public class PartidaXadrez {
 
     private int turno;
-    private Color jogadorAtual;
+    private Cor jogadorAtual;
     private MesaTabuleiro mesaTabuleiro;
     private boolean check;
     private boolean checkMate;
@@ -28,7 +28,7 @@ public class PartidaXadrez {
     public PartidaXadrez() {
         this.mesaTabuleiro = new MesaTabuleiro(8, 8);
         this.turno = 1;
-        this.jogadorAtual = Color.WHITE;
+        this.jogadorAtual = Cor.BRANCO;
         this.check = false;
         initialSetup();
     }
@@ -37,7 +37,7 @@ public class PartidaXadrez {
         return turno;
     }
 
-    public Color getJogadorAtual() {
+    public Cor getJogadorAtual() {
         return jogadorAtual;
     }
 
@@ -123,7 +123,7 @@ public class PartidaXadrez {
         if (!mesaTabuleiro.haUmaPeca(posicao)) {
             throw new XadrezException("Nao existe peca nessa posicao!");
         }
-        if (this.jogadorAtual != ((PecaXadrez) mesaTabuleiro.peca(posicao)).getColor()) {
+        if (this.jogadorAtual != ((PecaXadrez) mesaTabuleiro.peca(posicao)).getCor()) {
             throw new XadrezException("A peca escolhida nao e sua!");
         }
         if (!mesaTabuleiro.peca(posicao).existeUmMovimento()) {
@@ -139,15 +139,15 @@ public class PartidaXadrez {
 
     private void proximoTurno() {
         turno++;
-        this.jogadorAtual = (this.jogadorAtual == Color.WHITE) ? Color.BLACK : Color.WHITE;
+        this.jogadorAtual = (this.jogadorAtual == Cor.BRANCO) ? Cor.PRETO : Cor.BRANCO;
     }
 
-    private Color oponente(Color cor) {
-        return (cor == Color.WHITE) ? Color.BLACK : Color.WHITE;
+    private Cor oponente(Cor cor) {
+        return (cor == Cor.BRANCO) ? Cor.PRETO : Cor.BRANCO;
     }
 
-    private PecaXadrez rei(Color cor) {
-        List<Peca> list = pecasNoTabuleiro.stream().filter(x -> ((PecaXadrez) x).getColor() == cor)
+    private PecaXadrez rei(Cor cor) {
+        List<Peca> list = pecasNoTabuleiro.stream().filter(x -> ((PecaXadrez) x).getCor() == cor)
                 .collect(Collectors.toList());
 
         for (Peca p : list) {
@@ -159,9 +159,9 @@ public class PartidaXadrez {
         throw new IllegalStateException("Nao existe o REI da cor " + cor + " no tabuleiro");
     }
 
-    private boolean testeCheck(Color cor) {
+    private boolean testeCheck(Cor cor) {
         Posicao posicaoRei = rei(cor).getPosicaoXadrez().posicionarXadrezMatriz();
-        List<Peca> pecasOponente = pecasNoTabuleiro.stream().filter(x -> ((PecaXadrez) x).getColor() == oponente(cor))
+        List<Peca> pecasOponente = pecasNoTabuleiro.stream().filter(x -> ((PecaXadrez) x).getCor() == oponente(cor))
                 .collect(Collectors.toList());
 
         for (Peca p : pecasOponente) {
@@ -174,11 +174,11 @@ public class PartidaXadrez {
         return false;
     }
 
-    private boolean testeCheckMate(Color cor) {
+    private boolean testeCheckMate(Cor cor) {
         if (!testeCheck(cor)) {
             return false;
         }
-        List<Peca> list = pecasNoTabuleiro.stream().filter(x -> ((PecaXadrez) x).getColor() == cor)
+        List<Peca> list = pecasNoTabuleiro.stream().filter(x -> ((PecaXadrez) x).getCor() == cor)
                 .collect(Collectors.toList());
 
         for (Peca p : list) {
@@ -209,39 +209,39 @@ public class PartidaXadrez {
     }
 
     private void initialSetup() {
-        coloqueNovaPeca('a', 1, new Torre(mesaTabuleiro, Color.WHITE));
-        coloqueNovaPeca('b', 1, new Cavalo(mesaTabuleiro, Color.WHITE));
-        coloqueNovaPeca('c', 1, new Bispo(mesaTabuleiro, Color.WHITE));
-        coloqueNovaPeca('d', 1, new Rainha(mesaTabuleiro, Color.WHITE));
-        coloqueNovaPeca('e', 1, new Rei(mesaTabuleiro, Color.WHITE));
-        coloqueNovaPeca('f', 1, new Bispo(mesaTabuleiro, Color.WHITE));
-        coloqueNovaPeca('g', 1, new Cavalo(mesaTabuleiro, Color.WHITE));
-        coloqueNovaPeca('h', 1, new Torre(mesaTabuleiro, Color.WHITE));
-        coloqueNovaPeca('a', 2, new Peao(mesaTabuleiro, Color.WHITE));
-        coloqueNovaPeca('b', 2, new Peao(mesaTabuleiro, Color.WHITE));
-        coloqueNovaPeca('c', 2, new Peao(mesaTabuleiro, Color.WHITE));
-        coloqueNovaPeca('d', 2, new Peao(mesaTabuleiro, Color.WHITE));
-        coloqueNovaPeca('e', 2, new Peao(mesaTabuleiro, Color.WHITE));
-        coloqueNovaPeca('f', 2, new Peao(mesaTabuleiro, Color.WHITE));
-        coloqueNovaPeca('g', 2, new Peao(mesaTabuleiro, Color.WHITE));
-        coloqueNovaPeca('h', 2, new Peao(mesaTabuleiro, Color.WHITE));
+        coloqueNovaPeca('a', 1, new Torre(mesaTabuleiro, Cor.BRANCO));
+        coloqueNovaPeca('b', 1, new Cavalo(mesaTabuleiro, Cor.BRANCO));
+        coloqueNovaPeca('c', 1, new Bispo(mesaTabuleiro, Cor.BRANCO));
+        coloqueNovaPeca('d', 1, new Rainha(mesaTabuleiro, Cor.BRANCO));
+        coloqueNovaPeca('e', 1, new Rei(mesaTabuleiro, Cor.BRANCO));
+        coloqueNovaPeca('f', 1, new Bispo(mesaTabuleiro, Cor.BRANCO));
+        coloqueNovaPeca('g', 1, new Cavalo(mesaTabuleiro, Cor.BRANCO));
+        coloqueNovaPeca('h', 1, new Torre(mesaTabuleiro, Cor.BRANCO));
+        coloqueNovaPeca('a', 2, new Peao(mesaTabuleiro, Cor.BRANCO));
+        coloqueNovaPeca('b', 2, new Peao(mesaTabuleiro, Cor.BRANCO));
+        coloqueNovaPeca('c', 2, new Peao(mesaTabuleiro, Cor.BRANCO));
+        coloqueNovaPeca('d', 2, new Peao(mesaTabuleiro, Cor.BRANCO));
+        coloqueNovaPeca('e', 2, new Peao(mesaTabuleiro, Cor.BRANCO));
+        coloqueNovaPeca('f', 2, new Peao(mesaTabuleiro, Cor.BRANCO));
+        coloqueNovaPeca('g', 2, new Peao(mesaTabuleiro, Cor.BRANCO));
+        coloqueNovaPeca('h', 2, new Peao(mesaTabuleiro, Cor.BRANCO));
 
-        coloqueNovaPeca('a', 8, new Torre(mesaTabuleiro, Color.BLACK));
-        coloqueNovaPeca('b', 8, new Cavalo(mesaTabuleiro, Color.BLACK));
-        coloqueNovaPeca('c', 8, new Bispo(mesaTabuleiro, Color.BLACK));
-        coloqueNovaPeca('d', 8, new Rainha(mesaTabuleiro, Color.BLACK));
-        coloqueNovaPeca('e', 8, new Rei(mesaTabuleiro, Color.BLACK));
-        coloqueNovaPeca('f', 8, new Bispo(mesaTabuleiro, Color.BLACK));
-        coloqueNovaPeca('g', 8, new Cavalo(mesaTabuleiro, Color.BLACK));
-        coloqueNovaPeca('h', 8, new Torre(mesaTabuleiro, Color.BLACK));
-        coloqueNovaPeca('a', 7, new Peao(mesaTabuleiro, Color.BLACK));
-        coloqueNovaPeca('b', 7, new Peao(mesaTabuleiro, Color.BLACK));
-        coloqueNovaPeca('c', 7, new Peao(mesaTabuleiro, Color.BLACK));
-        coloqueNovaPeca('d', 7, new Peao(mesaTabuleiro, Color.BLACK));
-        coloqueNovaPeca('e', 7, new Peao(mesaTabuleiro, Color.BLACK));
-        coloqueNovaPeca('f', 7, new Peao(mesaTabuleiro, Color.BLACK));
-        coloqueNovaPeca('g', 7, new Peao(mesaTabuleiro, Color.BLACK));
-        coloqueNovaPeca('h', 7, new Peao(mesaTabuleiro, Color.BLACK));
+        coloqueNovaPeca('a', 8, new Torre(mesaTabuleiro, Cor.PRETO));
+        coloqueNovaPeca('b', 8, new Cavalo(mesaTabuleiro, Cor.PRETO));
+        coloqueNovaPeca('c', 8, new Bispo(mesaTabuleiro, Cor.PRETO));
+        coloqueNovaPeca('d', 8, new Rainha(mesaTabuleiro, Cor.PRETO));
+        coloqueNovaPeca('e', 8, new Rei(mesaTabuleiro, Cor.PRETO));
+        coloqueNovaPeca('f', 8, new Bispo(mesaTabuleiro, Cor.PRETO));
+        coloqueNovaPeca('g', 8, new Cavalo(mesaTabuleiro, Cor.PRETO));
+        coloqueNovaPeca('h', 8, new Torre(mesaTabuleiro, Cor.PRETO));
+        coloqueNovaPeca('a', 7, new Peao(mesaTabuleiro, Cor.PRETO));
+        coloqueNovaPeca('b', 7, new Peao(mesaTabuleiro, Cor.PRETO));
+        coloqueNovaPeca('c', 7, new Peao(mesaTabuleiro, Cor.PRETO));
+        coloqueNovaPeca('d', 7, new Peao(mesaTabuleiro, Cor.PRETO));
+        coloqueNovaPeca('e', 7, new Peao(mesaTabuleiro, Cor.PRETO));
+        coloqueNovaPeca('f', 7, new Peao(mesaTabuleiro, Cor.PRETO));
+        coloqueNovaPeca('g', 7, new Peao(mesaTabuleiro, Cor.PRETO));
+        coloqueNovaPeca('h', 7, new Peao(mesaTabuleiro, Cor.PRETO));
     }
 
 }

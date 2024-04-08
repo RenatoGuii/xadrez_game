@@ -2,13 +2,13 @@ package xadrezPecas;
 
 import tabuleiro.MesaTabuleiro;
 import tabuleiro.Posicao;
-import xadrez.Color;
+import xadrez.Cor;
 import xadrez.PecaXadrez;
 
 public class Cavalo extends PecaXadrez {
 
-    public Cavalo(MesaTabuleiro mesaTabuleiro, Color color) {
-        super(mesaTabuleiro, color);
+    public Cavalo(MesaTabuleiro mesaTabuleiro, Cor cor) {
+        super(mesaTabuleiro, cor);
     }
 
     public String toString() {
@@ -17,7 +17,7 @@ public class Cavalo extends PecaXadrez {
 
     private boolean podeMover(Posicao posicao) {
         PecaXadrez p = (PecaXadrez) getMesaTabuleiro().peca(posicao);
-        return p == null || p.getColor() != getColor();
+        return p == null || p.getCor() != getCor();
     }
 
     @Override

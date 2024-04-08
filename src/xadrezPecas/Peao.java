@@ -2,13 +2,13 @@ package xadrezPecas;
 
 import tabuleiro.MesaTabuleiro;
 import tabuleiro.Posicao;
-import xadrez.Color;
+import xadrez.Cor;
 import xadrez.PecaXadrez;
 
 public class Peao extends PecaXadrez {
 
-    public Peao(MesaTabuleiro mesaTabuleiro, Color color) {
-        super(mesaTabuleiro, color);
+    public Peao(MesaTabuleiro mesaTabuleiro, Cor cor) {
+        super(mesaTabuleiro, cor);
     }
 
     @Override
@@ -22,7 +22,7 @@ public class Peao extends PecaXadrez {
 
         Posicao p = new Posicao(0, 0);
 
-        if (getColor() == Color.WHITE) {
+        if (getCor() == Cor.BRANCO) {
 
             p.setValores(posicao.getLinha() - 1, posicao.getColuna());
             if (getMesaTabuleiro().posicaoExiste(p) && !getMesaTabuleiro().haUmaPeca(p)) {

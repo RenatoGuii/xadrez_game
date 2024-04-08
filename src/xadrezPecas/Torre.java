@@ -2,13 +2,13 @@ package xadrezPecas;
 
 import tabuleiro.MesaTabuleiro;
 import tabuleiro.Posicao;
-import xadrez.Color;
+import xadrez.Cor;
 import xadrez.PecaXadrez;
 
 public class Torre extends PecaXadrez {
 
-    public Torre(MesaTabuleiro mesaTabuleiro, Color color) {
-        super(mesaTabuleiro, color);
+    public Torre(MesaTabuleiro mesaTabuleiro, Cor cor) {
+        super(mesaTabuleiro, cor);
     }
 
     @Override

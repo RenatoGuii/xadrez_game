@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-import xadrez.Color;
+import xadrez.Cor;
 import xadrez.PartidaXadrez;
 import xadrez.PecaXadrez;
 import xadrez.PosicaoXadrez;
@@ -98,7 +98,7 @@ public class UI {
         if (peca == null) {
             System.out.print("-" + ANSI_RESET);
         } else {
-            if (peca.getColor() == Color.WHITE) {
+            if (peca.getCor() == Cor.BRANCO) {
                 System.out.print(ANSI_WHITE + peca + ANSI_RESET);
             } else {
                 System.out.print(ANSI_YELLOW + peca + ANSI_RESET);
@@ -108,9 +108,9 @@ public class UI {
     }
 
     private static void imprimirPecasCapturadas(List<PecaXadrez> capturados) {
-        List<PecaXadrez> white = capturados.stream().filter(x -> x.getColor() == Color.WHITE)
+        List<PecaXadrez> white = capturados.stream().filter(x -> x.getCor() == Cor.BRANCO)
                 .collect(Collectors.toList());
-        List<PecaXadrez> black = capturados.stream().filter(x -> x.getColor() == Color.BLACK)
+        List<PecaXadrez> black = capturados.stream().filter(x -> x.getCor() == Cor.PRETO)
                 .collect(Collectors.toList());
 
         System.out.println("Pecas capturadas: ");
